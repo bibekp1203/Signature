@@ -4,6 +4,7 @@ const canvas = document.getElementById("myCanvas");
 const clearButton = document.getElementById("clearButton");
 const saveButton = document.getElementById("saveButton");
 const fontPicker = document.getElementById("fontPicker");
+const retrieveButton = document.getElementById("retrieveButton");
 
 const ctx = canvas.getContext('2d')
 
@@ -59,4 +60,15 @@ saveButton.addEventListener('click', ()=>{
     link.href = canvas.toDataURL();
 
     link.click();
+})
+
+
+retrieveButton.addEventListener('click', ()=>{
+    let savedCanvas = localStorage.getItem('canvasContents');
+
+    if(savedCanvas){
+        let img = new Image();
+        img.src = savedCanvas;
+        ctx.drawImage(img,0,0)
+    }
 })
